@@ -1,0 +1,16 @@
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.header__title {
+    font-weight: 500 !important;
+}
+
+.header__title, .header__subtitle{
+    margin: 5px 0;
+}

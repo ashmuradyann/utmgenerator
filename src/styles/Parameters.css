@@ -1,0 +1,27 @@
+.params__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+}
+
+.params__wrapper small {
+    color: #868e96;
+    font-size: .8rem;
+    margin: 5px 0 0 0;
+    line-height: 1.3rem;
+}
+
+.params__required > div, .params__norequired > div {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.params__required, .params__norequired {
+    width: 48%;
+}
+
+.params__input__wrapper {
+    display: flex;
+}

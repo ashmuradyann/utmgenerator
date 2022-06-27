@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
+@import 'Header.css';
+@import 'Main.css';
+@import 'InputUrl.css';
+@import 'TrafficRadios.css';
+@import 'Parameters.css';
+@import 'Result.css';
+@import 'UsageInfo.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300 !important;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5% 14%;
+    background-color: #EEEEEE;
+  }
+  
+@media screen and (max-width: 1155px) {
+
+  .qr__wrapper {
+    flex-direction: column;
+  }
+
+  .qr__wrapper > * {
+    margin-top: 10px;
+  }
+
+}
+@media screen and (max-width: 991px) {
+
+  .params__wrapper {
+      flex-direction: column;
+  }
+
+  .params__required, .params__norequired {
+      width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .params__input__wrapper {
+    flex-direction: column;
+  }
+
+  .params__input__wrapper > * {
+    margin: 10px 0;
+  }
+
+  .url__wrapper {
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  .qr__img {
+    width: 150px;
+  }
+
+}
+
+@media screen and (max-width: 390px) {
+
+  .qr__img {
+    width: 120px;
+  }
+
+}
