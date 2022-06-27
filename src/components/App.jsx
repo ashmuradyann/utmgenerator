@@ -1,4 +1,4 @@
-import { useState, memo } from "react"
+import { useState } from "react"
 import Header from "./Header"
 import Main from "./Main"
 import UsageInfo from "./UsageInfo"
@@ -19,4 +19,4 @@ function App() {
   )
 }
 
-export default memo(App)
+export default App

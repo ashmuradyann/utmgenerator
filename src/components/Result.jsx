@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import ShortUrl from './ShortUrl'
 import QrCode from './QrCode'
 import ReadyUrl from './ReadyUrl'
@@ -17,4 +17,4 @@ const Result = ({ readyUrl }) => {
   )
 }
 
-export default Result
+export default memo(Result)

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import InputUrl from './InputUrl'
 import Parameters from './Parameters'
 import TrafficRadios from './TrafficRadios'
@@ -50,4 +50,4 @@ const Main = ({ setReadyUrl }) => {
   )
 }
 
-export default Main
+export default memo(Main)

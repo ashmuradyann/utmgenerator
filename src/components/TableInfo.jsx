@@ -3,7 +3,7 @@ import { Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 
 const TableInfo = ({ arr }) => {
   return (
-    <div>
+    <div style={{marginTop: "15px", width: "100%"}}>
         <Table aria-label="caption table">
             <TableHead>
                 <TableRow>
@@ -12,8 +12,8 @@ const TableInfo = ({ arr }) => {
                 </TableRow>
             </TableHead>
             <TableBody>
-            {arr.map(([key, value, arr]) => (
-                <TableRow key={key}>
+            {arr.map(([key, value, arr], i) => (
+                <TableRow>
                     <TableCell component="th" scope="row"><p className="strong__text">{key}</p></TableCell>
                     <TableCell>
                         {value}

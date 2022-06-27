@@ -1,30 +1,42 @@
+import axios from 'axios'
 import { Select, MenuItem, Button, TextField, Snackbar, Alert } from '@mui/material'
-import { height } from '@mui/system'
 import { useState, useEffect } from 'react'
 
 
 const ShortUrl = ({ readyUrl, setShortenQrUrl }) => {
 
   const [snackBar, setSnackBar] = useState(false)
-  const [select, setSelect] = useState("shrtco")
+  const [select, setSelect] = useState("clck")
   const [shortenUrl, setShortenUrl] = useState("")
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
 
-    if (readyUrl){
-      setLoading(true)
-      fetch(`https://api.shrtco.de/v2/shorten?url=${readyUrl}`)
-        .then(res => res.json())
+    if (readyUrl !== undefined) {
+      if (select === "clck") {
+        setLoading(true)
+        axios.get(`https://clck.ru/--?url=${readyUrl}`)
         .then(res => {
-          if (select === "shrtco"){
-            setShortenUrl(res?.result?.full_short_link)
-            setShortenQrUrl(res?.result?.full_short_link)
-          } else if (select === "9qr") {
-            setShortenUrl(res?.result?.full_short_link2)
-            setShortenQrUrl(res?.result?.full_short_link2)
-          }
+          setShortenUrl(res?.data)
+          setShortenQrUrl(res?.data)
         })
+      }
+      if (select === "isgd") {
+        setLoading(true)
+        axios.get(`https://is.gd/create.php?format=json&url=${readyUrl}`)
+        .then(res => {
+          setShortenUrl(res?.data?.shorturl)
+          setShortenQrUrl(res?.data?.shorturl)
+        })
+      }
+      if (select === "shrtco") {
+        setLoading(true)
+        axios.get(`https://api.shrtco.de/v2/shorten?url=${readyUrl}`)
+          .then(res => {
+              setShortenUrl(res?.data?.result?.full_short_link)
+              setShortenQrUrl(res?.data?.result?.full_short_link)
+          })
+      }
     }
     setLoading(false)
 
@@ -46,12 +58,13 @@ const ShortUrl = ({ readyUrl, setShortenQrUrl }) => {
             value={select}
             onChange={(e) => setSelect(e.target.value)}
           >
+            <MenuItem value={"clck"}>Clck.ru</MenuItem>
+            <MenuItem value={"isgd"}>Is.gd</MenuItem>
             <MenuItem value={"shrtco"}>Shrtco.de</MenuItem>
-            <MenuItem value={"9qr"}>9qr.de</MenuItem>
           </Select>
           <TextField
             fullWidth
-            placeholder={loading ? "Loading..." : "Здесь появится сокращённая ссылка..."}
+            placeholder="Здесь появится сокращённая ссылка..."
             size="small"
             inputProps={
               { readOnly: true, style: { fontWeight: "300" } }
