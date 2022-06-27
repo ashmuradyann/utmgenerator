@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/utmgenerator/static/css/main.85977ff2.css",
+    "main.js": "/utmgenerator/static/js/main.a1496669.js",
+    "index.html": "/utmgenerator/index.html",
+    "main.85977ff2.css.map": "/utmgenerator/static/css/main.85977ff2.css.map",
+    "main.a1496669.js.map": "/utmgenerator/static/js/main.a1496669.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85977ff2.css",
+    "static/js/main.a1496669.js"
+  ]
+}
