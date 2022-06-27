@@ -12,7 +12,7 @@ const ShortUrl = ({ readyUrl, setShortenQrUrl }) => {
 
   useEffect(() => {
 
-    if (readyUrl !== undefined) {
+    if (readyUrl !== "") {
       if (select === "clck") {
         setLoading(true)
         axios.get(`https://clck.ru/--?url=${readyUrl}`)
