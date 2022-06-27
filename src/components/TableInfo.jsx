@@ -3,7 +3,7 @@ import { Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 
 const TableInfo = ({ arr }) => {
   return (
-    <div style={{marginTop: "15px", width: "100%"}}>
+    <div className="usage__info__wrapper">
         <Table aria-label="caption table">
             <TableHead>
                 <TableRow>

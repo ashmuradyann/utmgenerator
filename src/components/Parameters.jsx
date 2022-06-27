@@ -111,7 +111,7 @@ const Parameters = ({ radio, source, medium, campaign, content, term }) => {
             <div>
               <span>Источник кампании</span>
               <div className="params__input__wrapper">
-                <Chip sx={{border: "1px solid #c4c4c4", borderRadius: "4px", height: "40px", marginRight: "5px", width: "120px", maxWidth: "120px"}} label="utm_source" />
+                <Chip sx={{border: "1px solid #c4c4c4", borderRadius: "4px", height: "40px", marginRight: "5px", width: "120px"}} label="utm_source" />
                 <TextField 
                   fullWidth 
                   placeholder="google, yandex, vk, facebook"

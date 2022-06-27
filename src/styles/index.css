@@ -45,12 +45,17 @@ body {
   }
 
   .url__wrapper {
+    margin: 5px 0 0 0;
     display: block;
   }
 
 }
 
 @media screen and (max-width: 600px) {
+
+  body {
+    padding: 5% 10%;
+  }
 
   .params__input__wrapper {
     flex-direction: column;
