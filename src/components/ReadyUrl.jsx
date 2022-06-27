@@ -11,16 +11,6 @@ const ReadyUrl = ({ readyUrl }) => {
         <div className="ready__url">
             <h2 className="url__title">Результат</h2>
             <div className="url__wrapper">
-            <Button
-                sx={{margin: "10px 5px 10px 0", width: "150px" , height: "40px"}}
-                disabled={readyUrl !== "" ? false : true}
-                variant="contained"
-                onClick={() => {
-                    setSnackBar(true)
-                    navigator.clipboard.writeText(readyUrl)
-                }}
-                >Копировать
-            </Button>
             <Snackbar open={snackBar} autoHideDuration={6000} onClose={() => setSnackBar(false)}>
                 <Alert onClose={() => setSnackBar(false)} severity="success" sx={{ width: '100%' }}>
                 Ссылка скопировано в буфер обмена!
@@ -33,9 +23,20 @@ const ReadyUrl = ({ readyUrl }) => {
                 inputProps={
                 { readOnly: true, }
                 }
+                sx={{margin: "0 5px 0 0"}}
                 variant="outlined"
                 value={readyUrl === "" ? "" : readyUrl}
             />
+            <Button
+                sx={{margin: "10px 0 10px 0", width: "150px" , height: "40px"}}
+                disabled={readyUrl !== "" ? false : true}
+                variant="contained"
+                onClick={() => {
+                    setSnackBar(true)
+                    navigator.clipboard.writeText(readyUrl)
+                }}
+                >Копировать
+            </Button>
             </div>
         </div>
     )

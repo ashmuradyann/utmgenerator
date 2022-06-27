@@ -44,6 +44,10 @@ body {
       width: 100%;
   }
 
+  .url__wrapper {
+    display: block;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -56,8 +60,12 @@ body {
     margin: 10px 0;
   }
 
-  .url__wrapper {
-    display: block;
+  .short__url__select {
+    flex-direction: column;
+  }
+
+  .short__url__select > * {
+    margin-bottom: 10px;
   }
 
 }
