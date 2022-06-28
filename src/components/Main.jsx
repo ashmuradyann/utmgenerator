@@ -21,7 +21,7 @@ const Main = ({ setReadyUrl }) => {
       let resultArr = [
         proto,
         url.includes(" ") ? url.replaceAll(" ", "") : url,
-        "/?",
+        url.includes("/") ? "?" : url.includes("?") ? "&" : "/?",
         utmSource ? "utm_source=" : "", utmSource,
         utmMedium ? "&utm_medium=" : "", utmMedium,
         utmCampaign ? "&utmCampaign=" : "", utmCampaign,
