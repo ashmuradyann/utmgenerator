@@ -12,33 +12,35 @@ const ShortUrl = ({ readyUrl, setShortenQrUrl }) => {
 
   useEffect(() => {
 
-    if (readyUrl !== "") {
-      if (select === "clck") {
-        setLoading(true)
-        axios.get(`https://clck.ru/--?url=${readyUrl}`)
-        .then(res => {
-          setShortenUrl(res?.data)
-          setShortenQrUrl(res?.data)
-        })
-      }
-      if (select === "isgd") {
-        setLoading(true)
-        axios.get(`https://is.gd/create.php?format=json&url=${readyUrl}`)
-        .then(res => {
-          setShortenUrl(res?.data?.shorturl)
-          setShortenQrUrl(res?.data?.shorturl)
-        })
-      }
-      if (select === "shrtco") {
-        setLoading(true)
-        axios.get(`https://api.shrtco.de/v2/shorten?url=${readyUrl}`)
+    setLoading(true)
+    setTimeout(() => {
+      if (readyUrl !== "") {
+        if (select === "clck") {
+          axios.get(`https://clck.ru/--?url=${readyUrl}`)
           .then(res => {
-              setShortenUrl(res?.data?.result?.full_short_link)
-              setShortenQrUrl(res?.data?.result?.full_short_link)
+            setShortenUrl(res?.data)
+            setShortenQrUrl(res?.data)
+            setLoading(false)
           })
+        }
+        if (select === "isgd") {
+          axios.get(`https://is.gd/create.php?format=json&url=${readyUrl}`)
+          .then(res => {
+            setShortenUrl(res?.data?.shorturl)
+            setShortenQrUrl(res?.data?.shorturl)
+            setLoading(false)
+          })
+        }
+        if (select === "shrtco") {
+          axios.get(`https://api.shrtco.de/v2/shorten?url=${readyUrl}`)
+          .then(res => {
+            setShortenUrl(res?.data?.result?.full_short_link)
+            setShortenQrUrl(res?.data?.result?.full_short_link)
+            setLoading(false)
+          })
+        }
       }
-    }
-    setLoading(false)
+    }, 10)
 
   }, [readyUrl, select])
 
@@ -71,7 +73,8 @@ const ShortUrl = ({ readyUrl, setShortenQrUrl }) => {
             }
             sx={{margin: "0 5px 0 0"}}
             variant="outlined"
-            value={shortenUrl !== "" ? shortenUrl : ""} />
+            value={shortenUrl !== "" ? loading ? "Loading..." : shortenUrl : ""}
+          />
         </div>
         <Button
           sx={{ margin: "10px 0 10px 0", width: "150px", height: "40px" }}
