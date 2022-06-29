@@ -16,21 +16,69 @@ const Main = ({ setReadyUrl }) => {
   const [utmContent, setUtmContent] = useState("")
   const [utmTerm, setUtmTerm] = useState("")
 
+  const modifyProto = () => {
+    if (url.includes("http://") || url.includes("https://")){
+      return ""
+    }
+    return proto
+  }
+  
   useEffect(() => {
-    if(url !== "" && url.includes(".") && utmSource !== "" && utmMedium !== "" && utmCampaign !== "" ){
-      let resultArr = [
-        proto,
-        url.includes(" ") ? url.replaceAll(" ", "") : url,
-        url.includes("/") ? "?" : url.includes("?") ? "&" : "/?",
+
+    const modifyUrl = () => {
+
+      let utms = [
         utmSource ? "utm_source=" : "", utmSource,
         utmMedium ? "&utm_medium=" : "", utmMedium,
-        utmCampaign ? "&utmCampaign=" : "", utmCampaign,
-        utmContent ? "&utmContent=" : "", utmContent,
-        utmTerm ? "&utmTerm=" : "", utmTerm,
+        utmCampaign ? "&utm_campaign=" : "", utmCampaign,
+        utmContent ? "&utm_content=" : "", utmContent,
+        utmTerm ? "&utm_term=" : "", utmTerm
       ]
-      let withoutSpaces = resultArr.map(el => !el.endsWith(" ") ? el.replace(" ", "+") : el).reduce((prev, current) => prev + current)
+      
+      if (url.includes(" ")) url.replaceAll(" ", "")
   
-      setReadyUrl(withoutSpaces)
+      let [firstPart, secondPart] = url.split("?")
+      
+      if (secondPart === undefined) secondPart = ""
+      console.log(firstPart, secondPart)
+
+      if (secondPart !== "") {
+        firstPart.replace("/", "")
+      }
+      
+      if (firstPart.endsWith("/") || firstPart.includes("#target")) {
+        firstPart = firstPart + ""
+      }
+
+      if (!firstPart.includes("/")) {
+        firstPart = firstPart + "/"
+      }
+      
+      if (secondPart === "") {
+        secondPart = "?" + secondPart
+      } else {
+        secondPart = "?" + secondPart + "&"
+      }
+
+      if (firstPart.includes("#target")) {
+        utms.push("#target")
+        firstPart = firstPart.replace("#target", "") 
+      } else if (secondPart.includes("#target")) {
+        utms.push("#target")
+        secondPart = secondPart.replace("#target", "")
+      }
+      
+      let readyUtms = utms.map(el => el.includes(" ") ? el.replaceAll(" ", "+") : el).reduce((a, b) => a + b)
+  
+      return firstPart + secondPart + readyUtms
+    }
+
+    if(url !== "" && url.includes(".") && utmSource !== "" && utmMedium !== "" && utmCampaign !== "" ){
+      
+      let result = modifyProto() + modifyUrl()
+      console.log(result)
+  
+      setReadyUrl(result)
     }
   }, [proto, url, radio, utmSource, utmMedium, utmCampaign, utmContent, utmTerm])
   
